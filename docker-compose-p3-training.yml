@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  # BigData - Kafka consumer
+  train-model:
+    build: ./project-3-training/
+    image: train-model:latest
+    container_name: project_3
+    environment:
+      SPARK_MASTER_NAME: spark-master
+      SPARK_MASTER_PORT: 7077
+      ENABLE_INIT_DAEMON: "false"

@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  # BigData - Kafka consumer
+  kafka-consumer:
+    build: ./project-2/
+    image: consumer:latest
+    container_name: project_2
+    depends_on:
+      - cassandra
+    environment:
+      SPARK_MASTER_NAME: spark-master
+      SPARK_MASTER_PORT: 7077
+      SPARK_SUBMIT_ARGS: "--packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.4.3"
+      ENABLE_INIT_DAEMON: "false"
+
+  #CASSANDRA
+  cassandra:
+    image: cassandra
+    container_name: cassandra-node
+    expose:
+      - "9042"
+    ports:
+      - "9042:9042"
+    volumes:
+      - cassandra_data:/var/lib/cassandra 
+volumes:
+  cassandra_data:

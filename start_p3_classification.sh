@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-p3-classification.yml build && docker-compose -f docker-compose-p3-classification.yml run classification-model

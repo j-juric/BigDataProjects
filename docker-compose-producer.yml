@@ -1,0 +1,7 @@
+version: "3"
+services:
+    kafka-producer:
+        build: ./kafka-producer
+        image: kafka-producer:latest
+        container_name: kafka-producer
+    

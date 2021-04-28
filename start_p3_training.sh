@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-p3-training.yml build && docker-compose -f docker-compose-p3-training.yml run train-model

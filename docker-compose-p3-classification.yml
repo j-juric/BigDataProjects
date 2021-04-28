@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  # BigData - Kafka consumer
+  classification-model:
+    build: ./project-3-classification/
+    image: classification-model:latest
+    container_name: project_3
+    environment:
+      SPARK_MASTER_NAME: spark-master
+      SPARK_MASTER_PORT: 7077
+      ENABLE_INIT_DAEMON: "false"
+      SPARK_SUBMIT_ARGS: "--packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.4.3"

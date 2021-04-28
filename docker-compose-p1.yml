@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  # BigData - Spark submit
+  submit:
+    build: ./project-1/
+    image: spark-submit:latest
+    container_name: project_1
+    environment:
+      SPARK_MASTER_NAME: spark-master
+      SPARK_MASTER_PORT: 7077
+      SPARK_APPLICATION_ARGS: ""
+      ENABLE_INIT_DAEMON: "false"
