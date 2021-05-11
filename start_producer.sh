@@ -1,1 +1,0 @@
-docker-compose -f docker-compose-producer.yml build && docker-compose 0f docker-compose-producer.yml run kafka-producer

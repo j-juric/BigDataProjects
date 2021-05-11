@@ -11,3 +11,4 @@ services:
       SPARK_MASTER_PORT: 7077
       ENABLE_INIT_DAEMON: "false"
       SPARK_SUBMIT_ARGS: "--packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.4.3"
+      WINDOW_DURATION_IN_SECONDS: 2

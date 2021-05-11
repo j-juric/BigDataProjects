@@ -43,31 +43,19 @@ if __name__ == '__main__':
 
     df = spark.read.csv(hdfs_url+dataset_loc, header=True)
 
-    
-
-    print('*'*50)
-    df.printSchema()
-    print('*'*50)
-    
-
-    # Drop unnecessary columns
-
     df = preprocess_data(df)
-
-    print('*'*50)
-    df.printSchema()
-    print('*'*50)
-    print(f'Df column count:{len(df.columns)}')
 
     #Split data
     train_data, test_data = df.randomSplit([0.8,0.2],1337)
-
-    print('Training Logistic Regression Model...')
+    
     #Build model
+    print('Training Logistic Regression Model...')
     lr = LogisticRegression(maxIter=100, regParam=0.02, elasticNetParam=0.8)
+
     #Train model
     pipeline = Pipeline(stages=[lr])
     lr_model = pipeline.fit(train_data)
+
     #Predict
     print('Making predictions...')
     pred = lr_model.transform(test_data)
@@ -78,22 +66,7 @@ if __name__ == '__main__':
 
     print(f'Logistic Regression Model accuracy = {accuracy}')
 
-    print('*'*50)
-
-    # print('Training Decision Tree Model...')
-    # dt = DecisionTreeClassifier(labelCol="label", featuresCol="features")
-    # pipeline = Pipeline(stages=[dt])
-    # dt_model = pipeline.fit(train_data)
-    
-    # print('Making predictions...')
-    # pred = dt_model.transform(test_data)
-    # accuracy = evaluator.evaluate(pred)
-    # print(f'Decision Tree accuracy = {accuracy}')
-
-    print('*'*50)
-
     print('Saving model...')
-
     lr_model.write().overwrite().save(hdfs_url+model_path)
-    print('Model saved')
+    print('Model saved.')
 

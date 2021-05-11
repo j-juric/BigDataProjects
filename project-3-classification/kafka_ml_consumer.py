@@ -32,10 +32,10 @@ def process_data(input_data, model):
 
     correct=float(correct)
 
-    evaluator = BinaryClassificationEvaluator(labelCol='label',rawPredictionCol='prediction',metricName='areaUnderROC')
-    accuracy = evaluator.evaluate(pred)
-
     print(f'{N} predictions made, accuracy = {correct/N*100}%')
+
+    # evaluator = BinaryClassificationEvaluator(labelCol='label',rawPredictionCol='prediction',metricName='areaUnderROC') 
+    # accuracy = evaluator.evaluate(pred)
 
 
 def preprocess_data(df):
@@ -63,17 +63,21 @@ def preprocess_data(df):
     
 
 if __name__ == '__main__':
-    spark = SparkSession.builder.appName('Darknet').getOrCreate()
-    
-    sc = spark.sparkContext
-    ssc = StreamingContext(sc,2)
-    sc.setLogLevel("ERROR")
 
     topic = os.getenv('KAFKA_TOPIC')
     kafka_url= os.getenv('KAFKA_URL')
     ip_address= os.getenv('TARGET_IP_ADDDRESS')
     hdfs_url = os.getenv('HDFS_URL')
     model_path = os.getenv('MODEL_LOCATION')
+    window_duration = os.getenv('WINDOW_DURATION_IN_SECONDS')
+
+    spark = SparkSession.builder.appName('Darknet').getOrCreate()
+    
+    sc = spark.sparkContext
+    ssc = StreamingContext(sc,window_duration)
+    sc.setLogLevel("ERROR")
+
+    
 
     model = PipelineModel.load(hdfs_url+model_path)
 

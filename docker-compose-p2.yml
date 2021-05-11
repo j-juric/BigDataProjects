@@ -13,6 +13,7 @@ services:
       SPARK_MASTER_PORT: 7077
       SPARK_SUBMIT_ARGS: "--packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.4.3"
       ENABLE_INIT_DAEMON: "false"
+      WINDOW_DURATION_IN_SECONDS: 2
 
   #CASSANDRA
   cassandra:

@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-p1.yml build && docker-compose -f docker-compose-p1.yml run submit
