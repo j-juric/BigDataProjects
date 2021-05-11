@@ -15,7 +15,6 @@ spark.sparkContext.setLogLevel("ERROR")
 
 data = spark.read.csv(hdfs_url+dataset_loc,header=True)
 
-
 import time
 from datetime import datetime
 #Returns a timestamp based on the input date (format must be d/m/y)
@@ -26,7 +25,7 @@ def date_to_timestamp(date):
 df = data.select(F.col('Src IP'), F.col('Dst IP'), F.col('Timestamp'), F.col('Total Fwd Packet'), F.col('Label1'), F.col('Label2'))
 
 #Filter Data based on type of traffic on the dark net
-df = df.where(F.col('Label2') == 'P2P').where(F.col('Src IP')==ip_address) #.where((F.col('Label1')=='Tor') | (F.col('Label1')=='VPN'))
+df = df.where(F.col('Label2') == 'P2P').where(F.col('Src IP')==ip_address) 
 start_date = '23/02/2016'
 end_date = '24/02/2016'
 
@@ -39,7 +38,7 @@ df = df.where(F.col('Timestamp').between(start_timestamp,end_timestamp))
 df.show()
 rdd1 = df.rdd.map(lambda x: (x['Src IP'], 1)).reduceByKey(lambda x,y : x+y)
 print('*'*50)
-print(f'Number of P2P darknet packet transactions between {start_date} and {end_date}, ip address : {ip_address}')
+print(f'Number of P2P benign packet transactions between {start_date} and {end_date}, ip address : {ip_address}')
 print(rdd1.take(1))
 print('*'*50)
 
