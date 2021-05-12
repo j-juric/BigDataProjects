@@ -17,6 +17,13 @@ Technologies used in the project:
 
 * Apache Zookeeper 3.6.1
 
+### Prerequisites
+
+The following must be installed on your machine:
+
+* docker
+* docker-compose
+
 ### Instructions
 
 What is essential for all project is to run the following shell scripts in order:
