@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-p2.yml stop && docker-compose -f docker-compose-p2.yml rm kafka-consumer

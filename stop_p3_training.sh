@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-p3-training.yml stop && docker-compose -f docker-compose-p3-training.yml rm train-model

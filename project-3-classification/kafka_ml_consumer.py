@@ -74,7 +74,7 @@ if __name__ == '__main__':
     spark = SparkSession.builder.appName('Darknet').getOrCreate()
     
     sc = spark.sparkContext
-    ssc = StreamingContext(sc,window_duration)
+    ssc = StreamingContext(sc,int(window_duration))
     sc.setLogLevel("ERROR")
 
     

@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-p1.yml stop && docker-compose -f docker-compose-p1.yml rm submit

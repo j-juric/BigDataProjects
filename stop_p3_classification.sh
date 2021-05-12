@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-p3-classification.yml stop && docker-compose -f docker-compose-p3-classification.yml rm classification-model

@@ -1,0 +1,1 @@
+docker ps stop(docker ps -a -q)

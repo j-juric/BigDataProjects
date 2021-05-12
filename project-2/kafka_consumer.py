@@ -50,7 +50,7 @@ def process_data(input_data,ip_address):
         popularity_data.append(('',0))
     
     print(popularity_data)
-
+    print('*'*50)
     cassandra_session.execute(f"""
         INSERT INTO test_keyspace.popularity(time, address1, address2, address3, value1, value2, value3)
         VALUES (toTimeStamp(now()), '{popularity_data[0][0]}', '{popularity_data[1][0]}', '{popularity_data[2][0]}', {popularity_data[0][1]}, {popularity_data[1][1]}, {popularity_data[2][1]})
@@ -109,7 +109,7 @@ if __name__ == '__main__':
         print("SPARK MASTER NOT SET")
 
     sc = SparkContext(appName='Darknet')
-    ssc = StreamingContext(sc,window_duration)
+    ssc = StreamingContext(sc,int(window_duration))
     sc.setLogLevel("ERROR")
 
     #CASSANDRA SETUP
